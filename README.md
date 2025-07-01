@@ -7,55 +7,111 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 🧾 Project Laravel Kelompok – Aplikasi Informasi Pasien RSJ
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi Informasi Pasien RSJ adalah sistem berbasis Laravel yang dirancang untuk membantu pengelolaan data pasien dan pegawai di Rumah Sakit Jiwa. Aplikasi ini menampilkan dashboard interaktif yang menyajikan statistik total pasien dan pegawai, serta menyediakan fitur CRUD (`Create, Read, Update, Delete`) untuk administrasi data. Dengan antarmuka yang responsif dan integrasi DataTables, aplikasi ini mendukung efisiensi dan kemudahan penggunaan bagi admin.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tool Requirements
 
-## Learning Laravel
+Sebelum menjalankan proyek ini, pastikan sistem kamu telah memiliki:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Tool            | Minimum Version | Keterangan                         |
+| --------------- | --------------- | ---------------------------------- |
+| PHP             | 8.2             | Laravel 12 membutuhkan PHP ≥ 8.1   |
+| Composer        | 2.x             | Untuk mengelola dependency Laravel |
+| Node.js & NPM   | Node 18 / NPM 9 | Untuk menjalankan Vite             |
+| MySQL / MariaDB | 5.7+ / 10.2+    | Untuk menyimpan data aplikasi      |
+| Git             | Latest          | Untuk clone dan push repository    |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 👥 Pembagian Tugas
 
-## Laravel Sponsors
+| Nama Anggota | Fitur yang Dikerjakan |
+| ------------ | --------------------- |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Dinna Nurcahyani Hendra
+| Setup kerangka Laravel |
+| Fathia Nisa Azzahra | Fitur autentikasi (login & register) |
+| Nabila Salwa Meliyani | CRUD Produk (tambah, edit, hapus, lihat), upload gambar ke storage, DataTables Ajax |
+| Icha Noviyana
+| Dashboard admin dan user, pembatasan akses halaman berdasarkan role pengguna |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## ⚙️ Cara Install & Menjalankan Proyek
 
-## Contributing
+### 1. Clone Repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Buka software **GIT** lalu jalankan perintah berikut:
 
-## Code of Conduct
+```bash
+git clone https://github.com/Dina-Nurcahyani/project-laravel-kelompok.git
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+cd project-laravel-kelompok
+```
 
-## Security Vulnerabilities
+### 2. Install Dependency Laravel
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer install
+```
 
-## License
+### 3. Install Dependency Laravel
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm install && npm run build
+```
+
+### 4. Copy File .env & Generate App Key
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+### 5. Atur Konfigurasi Database
+
+Buka folder project yang sudah diclone, cari file yang namanya **.env** lalu edit bagian dibawah ini:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_rsj
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Lalu buat database project_laravel_kelompok di MySQL.
+
+### 6. Jalankan Migrasi
+
+Buka kembali software **GIT** lalu jalankan perintah berikut:
+
+```bash
+php artisan migrate
+```
+
+### 7. Link Storage (untuk menampilkan gambar)
+
+```bash
+php artisan storage:link
+```
+
+### 8. Jalankan Aplikasi
+
+```bash
+php artisan serve
+```
+
+Buka di browser: http://127.0.0.1:8000
+
+## 🔐 Role Akses
+
+| Role  | Keterangan                            |
+| ----- | ------------------------------------- |
+| admin | akses penuh (dashboard, produk, user) |
+| user  | hanya melihat data produk             |

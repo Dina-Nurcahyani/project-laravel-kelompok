@@ -31,11 +31,10 @@ Sebelum menjalankan proyek ini, pastikan sistem kamu telah memiliki:
 
 | Nama Anggota | Fitur yang Dikerjakan |
 | ------------ | --------------------- |
-
-| Dinna Nurcahyani
+| Dinna Nurcahyani Hendra
 | Setup kerangka Laravel |
-| Fathia Nisa | Fitur autentikasi (login & register) |
-| Nabila Salwa | CRUD Produk (tambah, edit, hapus, lihat), upload gambar ke storage, DataTables Ajax |
+| Fathia Nisa Azzahra  | Fitur autentikasi (login & register) |
+| Nabila Salwa Meliyani | CRUD Produk (tambah, edit, hapus, lihat), upload gambar ke storage, DataTables Ajax |
 | Icha Noviyana
 | Dashboard admin dan user, pembatasan akses halaman berdasarkan role pengguna |
 

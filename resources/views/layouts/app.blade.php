@@ -38,7 +38,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src={{ asset('img/profile.svg') }} class="user-image rounded-circle shadow"
                                 alt="User Image" />
-                            <span class="d-none d-md-inline">Nama User</span>
+                            <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                         </a>
                     </li>
                     <!--end::User Menu Dropdown-->
@@ -97,12 +97,12 @@
                             </a>
                         </li>
                         <li class="nav-header">Logout</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link link-danger" onclick="confirmLogout(event)">
-                                <i class="nav-icon bi bi-power"></i>
-                                <p>Logout</p>
-                            </a>
-                        </li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-link link-danger" onclick="confirmLogout(event)">
+                                <i class="nav-icon bi bi-power"></i> Logout
+                            </button>
+                        </form>
                     </ul>
                     <!--end::Sidebar Menu-->
                 </nav>
@@ -141,7 +141,7 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/logout";
+                e.target.closest('form').submit();
             }
         });
     }

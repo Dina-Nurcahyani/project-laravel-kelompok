@@ -31,33 +31,35 @@
             <div class="container-fluid">
                 <!--begin::Row-->
                 <div class="row">
-                    <!--begin::Col-->
-                    <div class="col-lg-6 col-6">
-                        <!--begin::Small Box Widget 1-->
-                        <div class="small-box text-bg-primary">
-                            <div class="inner">
-                                <h3>150</h3>
-                                <p>Total Pegawai</p>
+                    @if (auth()->user()->role === 'admin')
+                        <!--begin::Col-->
+                        <div class="col-lg-6 col-6">
+                            <!--begin::Small Box Widget 1-->
+                            <div class="small-box text-bg-primary">
+                                <div class="inner">
+                                    <h3>{{ $totalUser }}</h3>
+                                    <p>Total Pegawai</p>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"
+                                    class="small-box-icon">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                </svg>
+                                <a href="/pegawai"
+                                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                                    More info <i class="bi bi-link-45deg"></i>
+                                </a>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"
-                                class="small-box-icon">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd"
-                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
-                            <a href="/pegawai"
-                                class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                                More info <i class="bi bi-link-45deg"></i>
-                            </a>
+                            <!--end::Small Box Widget 1-->
                         </div>
-                        <!--end::Small Box Widget 1-->
-                    </div>
+                    @endif
                     <!--end::Col-->
-                    <div class="col-lg-6 col-6">
+                    <div class="{{ auth()->user()->role === 'admin' ? 'col-12 col-md-6' : 'col-12' }}">
                         <!--begin::Small Box Widget 2-->
                         <div class="small-box text-bg-success">
                             <div class="inner">
-                                <h3>53<sup class="fs-5">%</sup></h3>
+                                <h3>{{ $totalPasien }}</h3>
                                 <p>Total Pasien</p>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -73,6 +75,14 @@
                         <!--end::Small Box Widget 2-->
                     </div>
                     <!--end::Col-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="genderChart"></canvas>
+                        </div>
+                    </div>
                 </div>
                 <!--end::Row-->
             </div>

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('nik');
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->text('alamat');
+            $table->enum('status', ['Rawat Jalan', 'Rawat Inap', 'Rujuk Keluar']);
+            $table->date('tanggal_masuk');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

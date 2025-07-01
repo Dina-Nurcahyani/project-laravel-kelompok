@@ -20,6 +20,8 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href={{ asset('css/adminlte.css') }} />
     <!--end::Required Plugin(AdminLTE)-->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -80,16 +82,16 @@
                             </a>
                         </li>
                         <li class="nav-header">Data</li>
-                        {{-- @if (auth()->user()->role === 'admin') --}}
-                        <li class="nav-item">
-                            <a href="/pegawai" class="nav-link {{ request()->is('pegawai*') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-person-circle"></i>
-                                <p>
-                                    Pegawai
-                                </p>
-                            </a>
-                        </li>
-                        {{-- @endif --}}
+                        @if (auth()->user()->role === 'admin')
+                            <li class="nav-item">
+                                <a href="/pegawai" class="nav-link {{ request()->is('pegawai*') ? 'active' : '' }}">
+                                    <i class="nav-icon bi bi-person-circle"></i>
+                                    <p>
+                                        Pegawai
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="/pasien" class="nav-link {{ request()->is('pasien*') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-people-fill"></i>
@@ -111,7 +113,9 @@
         </aside>
         <!--end::Sidebar-->
 
-        @yield('content')
+        <div class="container-fluid">
+            @yield('content')
+        </div>
 
         <!--begin::Footer-->
         <footer class="app-footer text-center">
@@ -130,6 +134,7 @@
 </body>
 <!--end::Body-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     function confirmLogout(e) {
         e.preventDefault();
@@ -147,5 +152,9 @@
     }
 </script>
 
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+@stack('scripts')
 
 </html>

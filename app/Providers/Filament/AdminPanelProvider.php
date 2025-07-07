@@ -28,6 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('/')
             ->login()
+            ->favicon(asset('logo.png'))
+            ->brandName('Informasi Pasien RSJ')
             ->colors([
                 'primary' => Color::Amber,
             ])

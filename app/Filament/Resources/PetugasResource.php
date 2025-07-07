@@ -18,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PetugasResource extends Resource
 {
@@ -26,6 +27,11 @@ class PetugasResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
     protected static ?string $navigationLabel = 'Petugas';
+
+    public static function canAccess(): bool
+    {
+        return Auth::check() && Auth::user()->hasRole('admin');
+    }
 
     public static function form(Form $form): Form
     {

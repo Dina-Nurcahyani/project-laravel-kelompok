@@ -20,12 +20,26 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PasienResource extends Resource
 {
     protected static ?string $model = Pasien::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+
+    protected static ?string $navigationLabel = 'Pasien';
+
+    public static function canCreate(): bool
+    {
+        return Auth::user()?->hasRole('admin');
+    }
+
+    // Kalau pakai Bulk delete
+    public static function canDeleteAny(): bool
+    {
+        return Auth::user()?->hasRole('admin');
+    }
 
     public static function form(Form $form): Form
     {
@@ -77,9 +91,9 @@ class PasienResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()->visible(fn() => Auth::user()?->hasRole('admin')),
+                Tables\Actions\EditAction::make()->visible(fn() => Auth::user()?->hasRole('admin')),
+                Tables\Actions\DeleteAction::make()->visible(fn() => Auth::user()?->hasRole('admin')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

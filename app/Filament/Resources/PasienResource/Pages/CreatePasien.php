@@ -10,6 +10,11 @@ class CreatePasien extends CreateRecord
 {
     protected static string $resource = PasienResource::class;
 
+    public static function canAccess(array $parameters = []): bool
+    {
+        return auth()->user()?->hasRole('admin');
+    }
+
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

@@ -10,6 +10,11 @@ class EditPasien extends EditRecord
 {
     protected static string $resource = PasienResource::class;
 
+    public static function canAccess(array $parameters = []): bool
+    {
+        return auth()->user()?->hasRole('admin');
+    }
+
     protected function getHeaderActions(): array
     {
         return [
